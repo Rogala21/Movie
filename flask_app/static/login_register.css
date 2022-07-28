@@ -1,0 +1,37 @@
+* {
+    margin: 0px;
+  }
+  
+  header {
+    height: 3em;
+    background-color: #3F47CC;
+  }
+  
+  .header {
+    text-align: center;
+    padding: 3px;
+    background-color: #cfd3f7;
+  }
+  
+  .header * {
+    padding: 3px;
+  }
+  
+  header img {
+    width: 150px;
+    margin-left: 5%;
+  }
+
+  .extra_info {
+    padding: 0;
+    margin: 0;
+    font-size: small;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    background-color: #3F47CC;
+    width: 100%;
+    color: white;
+}

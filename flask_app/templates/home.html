@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/home.css">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <img src="../static/imgs/logo.jpg" alt="">
+    </header>
+    <div class="header">
+        <h1>Feed</h1>
+        <p>This will display info when a user joins or when a new movie is added to the platform.</p>
+    </div>
+    <div id="main">
+        <div id="side_bar" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-dark"><a href="/account">Account</a></button>
+            <button type="button" class="btn btn-dark"><a href="/movie">Movies</a></button>
+            <button type="button" class="btn btn-dark"><a href="/new_movie">New Movie</a></button>
+            <button type="button" class="btn btn-dark"><a href="/account/following">Following</a></button>
+            <button type="button" class="btn btn-danger"><a href="/logout" >Logout</a></button>
+        </div>
+        <div id="feed">
+            {% for feed in feeds %}
+            <div class="post">
+                {% if feed.first_name %}
+                <p>Welcome <FONT COLOR=red>{{feed.first_name}}</FONT> to the platform</p>
+                {% endif %}
+                {% if feed.title %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <p><FONT COLOR=red>{{feed.user_added}}</FONT> added a new movie</p>
+                            <p><FONT COLOR=green>{{feed.title}}</FONT></p>
+                            <p><FONT COLOR=gold>{{feed.rating}} Stars</FONT> out of <FONT COLOR=gold>5 Stars</FONT></p>
+                            <p><FONT COLOR=blue>{{feed.genre}}</FONT></p>
+                            {% if feed.secondary_genre %}
+                            <p><FONT COLOR=blue>{{feed.secondary_genre}}</FONT></p>
+                            {% endif %}
+                            {% if feed.third_genre %}
+                            <p><FONT COLOR=blue>{{feed.third_genre}}</FONT></p>
+                            {% endif %}
+                            <p>Location: {{feed.location_watched}}</p>
+                        </div>
+                        <div class="col">
+                            <img src="{{feed.poster}}" alt="{{feed.title}} Movie poster">
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <footer>
+        <p>This page was made by Samuel Rogala</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/new_movie.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>New Movie</title>
+</head>
+<body>
+    <header>
+        <img src="../static/imgs/logo.jpg" alt="">
+    </header>
+    <div class="header">
+        <h1>New Movie</h1>
+        <p>Add a new movie.</p>
+    </div>
+    <div id="main">
+        <div id="side_bar" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-dark"><a href="/home">Home</a></button>
+            <button type="button" class="btn btn-dark"><a href="/account">Account</a></button>
+            <button type="button" class="btn btn-dark"><a href="/movie">Movies</a></button>
+            <button type="button" class="btn btn-dark"><a href="/account/following">Following</a></button>
+            <button type="button" class="btn btn-danger"><a href="/logout" >Logout</a></button>
+        </div>
+        <div id="form">
+            {% with errors = get_flashed_messages() %}
+            {% if errors %}
+            <div class="alert-message block-message error text-danger">
+            <ul>
+                {%- for msg in errors %}
+                <li>{{ msg }}</li>
+                {% endfor -%}
+            </ul>
+            </div>
+            {% endif %}
+            {% endwith %}
+            <form action="/new_movie/process" method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Movie Title</label>
+                    <input type="text" class="form-control" name="title">
+                </div>
+                <div class="mb-3">
+                    <label for="location_watched" class="form-label">Where did you watch this movie?</label>
+                    <input type="text" class="form-control" name="location_watched">
+                </div>
+                <div class="container">
+                    <label for="rating" class="form-label rating">Star Rating (1 Star - 5 Stars)</label>
+                    <input type="range" class="form-range rating" min="1" max="5" step="1" id="customRange3" name="rating">
+                </div>
+                <div class="mb-3">
+                    <label for="genre" class="form-label">Genre</label>
+                    <input type="text" class="form-control" name="genre">
+                </div>
+                <div class="mb-3">
+                    <label for="secondary_genre" class="form-label">Secondary Genre (Optional)</label>
+                    <input type="text" class="form-control" name="secondary_genre">
+                </div>
+                <div class="mb-3">
+                    <label for="third_genre" class="form-label">Third Genre (Optional)</label>
+                    <input type="text" class="form-control" name="third_genre">
+                </div>
+                <div class="mb-3">
+                    <label for="poster" class="form-label">Poster (a link to the poster img)</label>
+                    <input type="text" class="form-control" name="poster">
+                </div>
+                <div>
+                    <label for="description">Description: </label>
+                    <textarea name="description" rows="4" cols="50" class="form-control" ></textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="user_added" value="{{user.first_name}}" hidden>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+    <footer>
+        <p>This page was made by Samuel Rogala</p>
+    </footer>
+</body>
+</html>

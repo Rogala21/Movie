@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/account.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Account</title>
+</head>
+<body>
+    <header>
+        <img src="../static/imgs/logo.jpg" alt="">
+    </header>
+    <div class="header">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+        {% if user.id == main %}
+            <p>This page shows your Watched and Watch Later lists</p>
+            <p class="extra_info">(Clicking the title will remove the movie from the current list.)</p>
+            {% elif user.id != main %}
+            <p>This is the current user's Watched and Watch later list.</p>
+        {% endif %}
+    </div>
+    <div id="main">
+        <div id="side_bar" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-dark"><a href="/home">Home</a></button>
+            {% if user.id != main %}
+            <button type="button" class="btn btn-dark"><a href="/account">Account</a></button>
+            {% endif %}
+            <button type="button" class="btn btn-dark"><a href="/movie">Movies</a></button>
+            <button type="button" class="btn btn-dark"><a href="/new_movie">New Movie</a></button>
+            <button type="button" class="btn btn-dark"><a href="/account/following">Following</a></button>
+            <button type="button" class="btn btn-danger"><a href="/logout" >Logout</a></button>
+        </div>
+        <div id="movies_watched">
+            <h2 class="lists">Movies Watched</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Where I Watched</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Like</th>
+                        <th scope="col">Poster</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in watched %}
+                    {% if user.id in movie.watched %}
+                    <tr>
+                        <td>
+                            <FONT COLOR=green>
+                                {% if user.id == main %}
+                                <a href="/account/remove/watched/{{movie.id}}">{{movie.title}}</a>
+                                {% elif user.id != main %}
+                                <p>{{movie.title}}</p>
+                                {% endif %}
+                            </FONT>
+                        </td>
+                        <td>{{movie.user_location}}</td>
+                        <td><FONT COLOR=gold>{{movie.user_rating}} Stars</FONT></td>
+                        {% if movie.liked == "Yes" %}
+                        <td><input type="checkbox" checked disabled></td>
+                        {% else %}
+                        <td><input type="checkbox" disabled></td>
+                        {% endif %}
+                        <td><img src="{{movie.poster}}" alt=""></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id="watch_later">
+            <h2 class="lists">Watch Later</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Where Owner Watched</th>
+                        <th scope="col">Owner Rating</th>
+                        <th scope="col">Poster</th>
+                        {% if user.id == main %}
+                            <th scope="col">Add to Watched</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in later %}
+                    {% if user.id in movie.watch_later %}
+                    <tr>
+                        <td>
+                            <FONT COLOR=green>
+                                {% if user.id == main %}
+                                <a href="/account/remove/watched/{{movie.id}}">{{movie.title}}</a>
+                                {% elif user.id != main %}
+                                <p>{{movie.title}}</p>
+                                {% endif %}
+                            </FONT>
+                        </td>
+                        <td>{{movie.location_watched}}</td>
+                        <td><FONT COLOR=gold>{{movie.rating}} Stars</FONT></td>
+                        <td><img src="{{movie.poster}}" alt=""></td>
+                        {% if user.id == main %}
+                            <td><button type="button" class="btn btn-info"><a href="/movie/watch_later/{{movie.id}}">Add to Watched</a></td>
+                        {% endif %}
+                        
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            {% if user.id != main %}
+                {% if main in follower.follower_id %}
+                <form action="/account/un_following" method="post">
+                    <button type="submit" class="btn btn-primary">UnFollow</button>
+                    <input type="text" name="following_id" value="{{user.id}}" hidden>
+                </form>
+                {% elif main not in follower.follower_id %}
+                <form action="/account/new_following" method="post">
+                    <button type="submit" class="btn btn-primary">Follow</button>
+                    <input type="text" name="following_id" value="{{user.id}}" hidden>
+                </form>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <footer>
+        <p>This page was made by Samuel Rogala</p>
+    </footer>
+</body>
+</html>

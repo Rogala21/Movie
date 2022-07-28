@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/following.css">
+    <title>Following</title>
+</head>
+<body>
+    <header>
+        <img src="../static/imgs/logo.jpg" alt="">
+    </header>
+    <div class="header">
+        <h1>Following</h1>
+        <p>This page is showing a list of your currently following users and a list of not following accounts.</p>
+        <p class="extra_info">(Clicking the users name will bring you to the users account page, and you can UnFollow the user on their account page.)</p>
+    </div>
+    <div id="main">
+        <div id="side_bar" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-dark"><a href="/home">Home</a></button>
+            <button type="button" class="btn btn-dark"><a href="/account">Account</a></button>
+            <button type="button" class="btn btn-dark"><a href="/movie">Movies</a></button>
+            <button type="button" class="btn btn-dark"><a href="/new_movie">New Movie</a></button>
+            <button type="button" class="btn btn-danger"><a href="/logout" >Logout</a></button>
+        </div>
+        <div id="user">
+            {% for i in following %}
+            <h1><font color="red"><a href="/account/{{i.id}}">{{i.first_name}}</a></font></h1>
+            <div id="post">
+                <div id="movies_watched">
+                    <h2 class="lists">Movies Watched</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Movie</th>
+                                <th scope="col">Where I Watched</th>
+                                <th scope="col">Rating</th>
+                                <th scope="col">Like</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for movie in watched %}
+                            {% if i.id in movie.watched %}
+                            <tr>
+                                <td><FONT COLOR=green>{{movie.title}}</FONT></td>
+                                <td>{{movie.user_location}}</td>
+                                <td><FONT COLOR=gold>{{movie.user_rating}} Stars</FONT></td>
+                                {% if movie.liked == "Yes" %}
+                                <td><input type="checkbox" checked disabled></td>
+                                {% else %}
+                                <td><input type="checkbox" disabled></td>
+                                {% endif %}
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div id="watch_later">
+                    <h2 class="lists">Watch Later</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Movie</th>
+                                <th scope="col">Where Owner Watched</th>
+                                <th scope="col">Owner Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for movie in later %}
+                            {% if i.id in movie.watch_later %}
+                            <tr>
+                                <td><FONT COLOR=green>{{movie.title}}</FONT></td>
+                                <td>{{movie.location_watched}}</td>
+                                <td><FONT COLOR=gold>{{movie.rating}} Stars</FONT></td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="not_following">
+            {% for a in ausers %}
+            {% if a.id not in user.following_id and a.id != user.id %}
+            <form action="/account/new_following" method="post">
+                <table>
+                    <td><p><a href="/account/{{a.id}}">{{a.first_name}}</a> <button type="submit" class="btn btn-primary">Follow</button></p></td>
+                    <td><input type="text" name="follower_id" value="{{user.id}}" hidden> <input type="text" name="following_id" value="{{a.id}}" hidden></td>
+                </table>
+            </form>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <footer>
+        <p>This page was made by Samuel Rogala</p>
+    </footer>
+</body>
+</html>

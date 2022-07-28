@@ -1,0 +1,123 @@
+* {
+    margin: 0px;
+}
+
+header {
+    height: 3em;
+    background-color: #3F47CC;
+}
+
+.header {
+    text-align: center;
+    padding: 3px;
+    background-color: #cfd3f7;
+}
+
+.header * {
+    padding: 3px;
+}
+
+header img {
+    width: 150px;
+    margin-left: 5%;
+}
+
+#main {
+    display: flex;
+    justify-content: space-between;
+}
+
+#user {
+    width: 85%;
+}
+
+#user *{
+    text-align: center;
+    padding-top: .25em;
+    padding-bottom: .25em;
+}
+
+#post {
+    border-bottom: 3px solid black;
+    display: flex;
+}
+
+#side_bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start;
+    height: 500px;
+}
+
+#side_bar a{
+    color: white;
+    text-decoration: none;
+}
+
+#side_bar button{
+    padding-top: 15%;
+    padding-bottom: 15%;
+}
+
+#feed {
+    width: 100%;
+}
+
+#feed p {
+    margin: auto;
+}
+
+.post {
+    border-bottom: 3px solid black;
+    margin: auto 3%;
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+}
+
+img{
+    width:100px;
+    height:100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    text-decoration: none;
+    color: red;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 * {
+    text-align: center;
+}
+
+#not_following {
+    max-width: 15%;
+}
+
+#not_following a {
+    padding: 1em;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    background-color: #3F47CC;
+    width: 100%;
+    color: white;
+}
+
+#movies_watched {
+    margin: auto;
+    width: 45%;
+}
+
+#watch_later {
+    margin: auto;
+    width: 45%;
+}

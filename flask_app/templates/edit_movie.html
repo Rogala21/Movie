@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/edit_movie.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>New Movie</title>
+</head>
+<header>
+    <img src="../static/imgs/logo.jpg" alt="">
+</header>
+<div class="header">
+    <h1>Edit {{movie.title}}</h1>
+    <p>Edit the movie details</p>
+</div>
+<body>
+    <div id="main">
+        <div id="side_bar" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+            <button type="button" class="btn btn-dark"><a href="/home">Home</a></button>
+            <button type="button" class="btn btn-dark"><a href="/account">Account</a></button>
+            <button type="button" class="btn btn-dark"><a href="/movie">Movies</a></button>
+            <button type="button" class="btn btn-dark"><a href="/new_movie">New Movie</a></button>
+            <button type="button" class="btn btn-dark"><a href="/account/following">Following</a></button>
+            <button type="button" class="btn btn-danger"><a href="/logout" >Logout</a></button>
+        </div>
+        <div id="form">
+            {% with errors = get_flashed_messages() %}
+            {% if errors %}
+            <div class="alert-message block-message error text-danger">
+            <ul>
+                {%- for msg in errors %}
+                <li>{{ msg }}</li>
+                {% endfor -%}
+            </ul>
+            </div>
+            {% endif %}
+            {% endwith %}
+            <form action="/edit_movie/{{movie.id}}/process" method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Movie Title</label>
+                    <input type="text" class="form-control" name="title" value="{{movie.title}}">
+                    <input type="text" class="form-control" name="movie_id" value="{{movie.id}}" hidden>
+                </div>
+                <div class="mb-3">
+                    <label for="location_watched" class="form-label">Where did you watch this movie?</label>
+                    <input type="text" class="form-control" name="location_watched" value="{{movie.location_watched}}">
+                </div>
+                <div class="container">
+                    <label for="rating" class="form-label rating">Star Rating (1 Star - 5 Stars)</label>
+                    <input type="range" class="form-range rating" min="1" max="5" step="1" id="customRange3" name="rating" value="{{movie.rating}}">
+                </div>
+                <div class="mb-3">
+                    <label for="genre" class="form-label">Genre</label>
+                    <input type="text" class="form-control" name="genre" value="{{movie.genre}}">
+                </div>
+                <div class="mb-3">
+                    <label for="secondary_genre" class="form-label">Secondary Genre (Optional)</label>
+                    <input type="text" class="form-control" name="secondary_genre" value="{{movie.secondary_genre}}">
+                </div>
+                <div class="mb-3">
+                    <label for="third_genre" class="form-label">Third Genre (Optional)</label>
+                    <input type="text" class="form-control" name="third_genre" value="{{movie.third_genre}}">
+                </div>
+                <div class="mb-3">
+                    <label for="poster" class="form-label">Poster (a link to the poster img)</label>
+                    <input type="text" class="form-control" name="poster" value="{{movie.poster}}">
+                </div>
+                <div>
+                    <label for="description">Description: </label>
+                    <textarea name="description" rows="4" cols="50" class="form-control" >{{movie.description}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+    <footer>
+        <p>This page was made by Samuel Rogala</p>
+    </footer>
+</body>
+</html>

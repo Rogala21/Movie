@@ -1,0 +1,121 @@
+* {
+    margin: 0px;
+}
+
+header {
+    height: 3em;
+    background-color: #3F47CC;
+}
+
+.header {
+    text-align: center;
+    padding: 3px;
+    background-color: #cfd3f7;
+}
+
+.header * {
+    padding-top: 3px;
+}
+
+header img {
+    width: 125px;
+    margin-left: 5%;
+}
+
+#main {
+    display: flex;
+}
+
+#side_bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start;
+    height: 500px;
+}
+
+button a {
+    color: white;
+    text-decoration: none;
+}
+
+#side_bar a{
+    color: white;
+    text-decoration: none;
+}
+
+h2 {
+    padding: 7px;
+}
+
+#movies_watched {
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#movies_watched td {
+    text-align: center;
+    width: 50em;
+    margin: auto;
+}
+
+#movies_watched tr {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+#watch_later {
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#watch_later td {
+    text-align: center;
+    width: 50em;
+    margin: auto;
+}
+
+#watch_later tr {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+.lists {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+font a {
+    color: green;
+    text-decoration: none;
+}
+
+td img {
+    height: 75px;
+    width: auto;
+}
+
+td {
+    vertical-align: middle;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    background-color: #3F47CC;
+    width: 100%;
+    color: white;
+}
+
+.extra_info {
+    padding: 0;
+    margin: 0;
+    font-size: small;
+}
