@@ -54,8 +54,8 @@ img{
 }
 
 footer {
-    position: fixed;
-    bottom: 0px;
+  position: relative;
+  bottom: 0px;
     background-color: #3F47CC;
     width: 100%;
     color: white;

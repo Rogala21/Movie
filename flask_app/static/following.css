@@ -105,7 +105,7 @@ h1 * {
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0px;
     background-color: #3F47CC;
     width: 100%;
