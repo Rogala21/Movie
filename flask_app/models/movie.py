@@ -147,3 +147,19 @@ class movie_watched:
             if movie['dmovie_id'] != None:
                 current.watched.append(movie['duser_id'])
         return movies
+
+    @classmethod
+    def get_all_movies_watched_account(cls, id):
+        query = "SELECT * FROM moveis_schema.movies LEFT JOIN moveis_schema.watched ON movies.id = dmovie_id where duser_id = %(id)s;"
+        results = connectToMySQL(db).query_db(query, {"id": id})
+        movies = []
+        for movie in results:
+            if len(movies) < 1:
+                movies.append(cls(movie))
+            current = movies[len(movies)-1]
+            if current.id != movie['id']:
+                movies.append(cls(movie))
+                current = movies[len(movies)-1]
+            if movie['dmovie_id'] != None:
+                current.watched.append(movie['duser_id'])
+        return movies

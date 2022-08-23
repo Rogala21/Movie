@@ -18,42 +18,48 @@
     </div>
     <div id="main">
         <div id="side_bar" class="btn-group-vertical" role="group" aria-label="Vertical button group">
-            <button type="button" class="btn btn-dark"><a href="/account">Account</a></button>
-            <button type="button" class="btn btn-dark"><a href="/movie">Movies</a></button>
-            <button type="button" class="btn btn-dark"><a href="/new_movie">New Movie</a></button>
-            <button type="button" class="btn btn-dark"><a href="/account/following">Following</a></button>
-            <button type="button" class="btn btn-danger"><a href="/logout" >Logout</a></button>
+            <a href="/home"><button type="button" class="btn btn-dark">Home</button></a>
+            <a href="/account"><button type="button" class="btn btn-dark">Account</button></a>
+            <a href="/movie"><button type="button" class="btn btn-dark">Movies</button></a>
+            <a href="/new_movie"><button type="button" class="btn btn-dark">New Movie</button></a>
+            <a href="/account/following"><button type="button" class="btn btn-dark">Following</button></a>
+            <a href="/logout" ><button type="button" class="btn btn-danger">Logout</button></a>
         </div>
-        <div id="feed">
-            {% for feed in feeds %}
-            <div class="post">
-                {% if feed.first_name %}
-                <p>Welcome <FONT COLOR=red>{{feed.first_name}}</FONT> to the platform</p>
-                {% endif %}
-                {% if feed.title %}
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <p><FONT COLOR=red>{{feed.user_added}}</FONT> added a new movie</p>
-                            <p><FONT COLOR=green>{{feed.title}}</FONT></p>
-                            <p><FONT COLOR=gold>{{feed.rating}} Stars</FONT> out of <FONT COLOR=gold>5 Stars</FONT></p>
-                            <p><FONT COLOR=blue>{{feed.genre}}</FONT></p>
-                            {% if feed.secondary_genre %}
-                            <p><FONT COLOR=blue>{{feed.secondary_genre}}</FONT></p>
-                            {% endif %}
-                            {% if feed.third_genre %}
-                            <p><FONT COLOR=blue>{{feed.third_genre}}</FONT></p>
-                            {% endif %}
-                            <p>Location: {{feed.location_watched}}</p>
-                        </div>
-                        <div class="col">
-                            <img src="{{feed.poster}}" alt="{{feed.title}} Movie poster">
+        <div id="content">
+            <div id="display">
+                <p>test</p>
+            </div>
+            <div id="feed">
+                {% for feed in feeds %}
+                <div class="post">
+                    {% if feed.first_name %}
+                    <p>Welcome <FONT COLOR=red>{{feed.first_name}}</FONT> to the platform</p>
+                    {% endif %}
+                    {% if feed.title %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <p><FONT COLOR=red>{{feed.user_added}}</FONT> added a new movie</p>
+                                <p><FONT COLOR=green>{{feed.title}}</FONT></p>
+                                <p><FONT COLOR=gold>{{feed.rating}} Stars</FONT> out of <FONT COLOR=gold>5 Stars</FONT></p>
+                                <p><FONT COLOR=blue>{{feed.genre}}</FONT></p>
+                                {% if feed.secondary_genre %}
+                                <p><FONT COLOR=blue>{{feed.secondary_genre}}</FONT></p>
+                                {% endif %}
+                                {% if feed.third_genre %}
+                                <p><FONT COLOR=blue>{{feed.third_genre}}</FONT></p>
+                                {% endif %}
+                                <p>Location: {{feed.location_watched}}</p>
+                            </div>
+                            <div class="col">
+                                <img src="{{feed.poster}}" alt="{{feed.title}} Movie poster">
+                            </div>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
-                {% endif %}
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
     <footer>

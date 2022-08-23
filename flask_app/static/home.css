@@ -32,16 +32,36 @@ header img {
     justify-content: flex-start;
     align-self: flex-start;
     height: 500px;
+    left: 0;
 }
 
 #side_bar a{
     color: white;
     text-decoration: none;
+    width: 100%;
 }
 
 #side_bar button{
     padding-top: 15%;
     padding-bottom: 15%;
+    width: 100%;
+}
+
+#content {
+    width: 100%;
+}
+
+#content p {
+    margin: auto;
+}
+
+#display {
+    width: 100%;
+}
+
+#display p {
+    margin: auto;
+    text-align: center;
 }
 
 #feed {

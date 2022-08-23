@@ -9,13 +9,13 @@ from flask_app.models.movie import movie, movie_watched
 def account():
     if 'user_id' not in session:
         return redirect('/logout')
-    return render_template('account.html', later = movie.get_all_movies_movie(), watched = movie_watched.get_all_movies_watched(), user = user.get_by_id(session['user_id']), main = session['user_id'])
+    return render_template('account.html', later = movie.get_all_movies_movie(), watched = movie_watched.get_all_movies_watched_account(session['user_id']), user = user.get_by_id(session['user_id']), main = session['user_id'])
 
 @app.route('/account/<user_id>')
 def user_account(user_id):
     if 'user_id' not in session:
         return redirect('/logout')
-    return render_template('account.html', later = movie.get_all_movies_movie(), watched = movie_watched.get_all_movies_watched(), user = user.get_by_id(user_id), follower = user_follow.get_all_user_followers(user_id), main = session['user_id'])
+    return render_template('account.html', later = movie.get_all_movies_movie(), watched = movie_watched.get_all_movies_watched_account(user_id), user = user.get_by_id(user_id), follower = user_follow.get_all_user_followers(user_id), main = session['user_id'])
 
 @app.route("/account/following")
 def following():

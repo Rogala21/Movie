@@ -38,11 +38,13 @@ header img {
 #side_bar a{
     color: white;
     text-decoration: none;
+    width: 100%;
 }
 
 #side_bar button{
     padding-top: 15%;
     padding-bottom: 15%;
+    width: 100%;
 }
 
 #feed {

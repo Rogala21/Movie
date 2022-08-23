@@ -34,6 +34,12 @@ header img {
     height: 500px;
 }
 
+#side_bar button{
+    padding-top: 15%;
+    padding-bottom: 15%;
+    width: 100%;
+}
+
 button a {
     color: white;
     text-decoration: none;
@@ -42,6 +48,7 @@ button a {
 #side_bar a{
     color: white;
     text-decoration: none;
+    width: 100%;
 }
 
 h2 {
